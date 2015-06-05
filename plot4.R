@@ -11,8 +11,8 @@ plot4 <-  function () {
     
     #------------ set the file to be used -----------------------
     #-----------  (..._reduced  only for test purpose) ----------
-    #filename <-  "household_power_consumption.txt"
-    filename <-  "household_power_consumption__reduced.txt"
+    filename <-  "household_power_consumption.txt"
+    #filename <-  "household_power_consumption__reduced.txt"
     
     
     alldata <- read.csv( filename,  sep = c(';')) 
@@ -56,6 +56,10 @@ plot4 <-  function () {
     
     
     
+    png("plot4.png", width=480, height=480)
+    
+    
+    
     #par()              # view current settings
     opar <- par()       # make a copy of current settings
     par(lty=1)          # use a solid line 
@@ -64,13 +68,12 @@ plot4 <-  function () {
     
     # -----------  do empty plot -----------------------------------
     plot (  
-        data$FullDate , 
-        data$Global_active_power, 
-        xlab = "", 
-        ylab = "Global Active Power"
+        data$FullDate
+        , data$Global_active_power 
+        , xlab = "" 
+        , ylab = "Global Active Power"
         , type ="n"
-        , width=480
-        , height=480
+
     )
       
     #----------  now draw the lines  --------------------------------
@@ -153,17 +156,10 @@ plot4 <-  function () {
         , data$Global_reactive_power 
     )
   
-    
-    
-    
-    #---------   create the plot output  (PNG file) ----------------
-    dev.copy (png,file = "plot4.png", width=480, height=480)
+
+    #-------- finish the plotting, create output file ------------
     dev.off()
-    
-    
-    
-    
-    
+        
     #----------   restore the parameters -------------------------
     
     par(opar)          # restore original settings
@@ -184,4 +180,4 @@ test4  <-  function (){
 
 
 ##  start the test
-test4()
+#test4()

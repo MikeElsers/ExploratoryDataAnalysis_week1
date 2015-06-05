@@ -5,8 +5,15 @@
 
 plot1    <-  function (){
 
-    filename <-  "household_power_consumption.txt"
+    #--  save the locale (we need to switch to US) -----------
+    backkup_locale <- Sys.getlocale('LC_TIME')
     
+    Sys.setlocale('LC_TIME', 'C')
+    
+    
+    #-------  read the data ----------------------------------
+    
+    filename <-  "household_power_consumption.txt"
     alldata <- read.csv( filename,  sep = c(';')) 
     
     
@@ -19,12 +26,17 @@ plot1    <-  function (){
     lowDate <-  as.Date ("2007-02-01", "%Y-%m-%d")
     highDate <- as.Date ("2007-02-02", "%Y-%m-%d")
 
-    #---------- filter 
+    
+    #---------- filter data -----------------------------------------
     data  <-  subset( alldata, (alldata$Date >= lowDate) & (alldata$Date <= highDate)  )
 
     data$Global_active_power  <-  as.numeric(as.character(data$Global_active_power))
 
+    
+    #-------- start plotting -------------------------------------
+    png("plot1.png", width=480, height=480)
 
+    
     #------------ create the histogram  -----------------------------------
     myhist <- hist (  data$Global_active_power, 
             col="red", 
@@ -32,16 +44,16 @@ plot1    <-  function (){
             xlab="Global Active Power(kilowatts)"
     )
 
-
-    dev.copy (png,file = "plot1.png", width=400, height=400)
+    
+    #------------ housekeeping ---------------------------------------
     dev.off()
 
-
+    Sys.setlocale('LC_TIME', backkup_locale) 
 }
 
 ##==============================================================================
 
-test  <-  function (){
+test1  <-  function (){
     print ("")
     print (" --------- starting plot1 TEST  function --------------------")
     print ("")
@@ -50,4 +62,4 @@ test  <-  function (){
 
 
 ##  start the test
-test()
+#test1()

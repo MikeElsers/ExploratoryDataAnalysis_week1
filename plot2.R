@@ -6,6 +6,12 @@
 plot2    <-  function (){
 
     
+    #--  save the locale (we need to switch to US) -----------
+    backkup_locale <- Sys.getlocale('LC_TIME')
+    
+    Sys.setlocale('LC_TIME', 'C')
+    
+    
     #------------ set the file to be used -----------------------
     #-----------  (..._reduced  only for test purpose) ----------
     filename <-  "household_power_consumption.txt"
@@ -35,6 +41,8 @@ plot2    <-  function (){
                           as.numeric(as.character(data$Global_active_power))
 
 
+    png("plot2.png", width=480, height=480)
+    
     #------------ modify the parameters  -----------------------------------
     
     #par()              # view current settings
@@ -59,8 +67,7 @@ plot2    <-  function (){
     )
 
     
-    #---------   create the plot output  (PNG file) ----------------
-    dev.copy (png,file = "plot2.png", width=400, height=400)
+    #---------   create the plot output  (PNG file) ----------------s
     dev.off()
 
 
@@ -68,12 +75,13 @@ plot2    <-  function (){
 
     par(opar)          # restore original settings
 
+    Sys.setlocale('LC_TIME', backkup_locale)
 
 }
 
 ##==============================================================================
 
-test  <-  function (){
+test2  <-  function (){
     print ("")
     print (" --------- starting plot2 TEST  function --------------------")
     print ("")
@@ -82,4 +90,4 @@ test  <-  function (){
 
 
 ##  start the test
-test()
+#test2()

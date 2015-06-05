@@ -46,12 +46,14 @@ plot3    <-  function (){
         as.numeric ( as.character ( data$Sub_metering_3))
     
     
+ 
+    png("plot3.png", width=480, height=480)
     
     #------------ modify the parameters  -----------------------------------
     
     #par()              # view current settings
     opar <- par()      # make a copy of current settings
-    par(lty=1)         # use a solid line 
+    par(lty=1)         # use a solid line
 
 
     # -----------  do empty plot -----------------------------------
@@ -92,7 +94,7 @@ plot3    <-  function (){
  
     
     #---------   create the plot output  (PNG file) ----------------
-    dev.copy (png,file = "plot3.png", width=480, height=480)
+    
     dev.off()
 
 
@@ -102,15 +104,12 @@ plot3    <-  function (){
 
     Sys.setlocale('LC_TIME', backkup_locale)
  
-    
-#    print ("=====================================================")
-#    print ("  REDUCED dataset  used !!! ---->>>>>  change this ")
-#""
+
 }
 
 ##==============================================================================
 
-test  <-  function (){
+test3  <-  function (){
     print ("")
     print (" --------- starting plot3 TEST  function --------------------")
     print ("")
@@ -119,4 +118,4 @@ test  <-  function (){
 
 
 ##  start the test
-test()
+#test3()
