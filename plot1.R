@@ -33,7 +33,7 @@ plot1    <-  function (){
     )
 
 
-    dev.copy (png,file = "plot1.png")
+    dev.copy (png,file = "plot1.png", width=400, height=400)
     dev.off()
 
 

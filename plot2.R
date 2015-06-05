@@ -60,7 +60,7 @@ plot2    <-  function (){
 
     
     #---------   create the plot output  (PNG file) ----------------
-    dev.copy (png,file = "plot2.png")
+    dev.copy (png,file = "plot2.png", width=400, height=400)
     dev.off()
 
 
